@@ -21,4 +21,4 @@ In future versions offering optional paid features, payment processing may be ha
 We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.
 
 ## 6. Contact
-If you have any questions about this Privacy Policy, please contact us at: autorefsup@gmail.com
+If you have any questions about this Privacy Policy, please contact us at: autorefsup[at]gmail.com
