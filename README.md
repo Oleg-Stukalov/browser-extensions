@@ -1,2 +1,1 @@
-# chrome_extensions_legal
-Open repo for Chrome extensions docs
+Open repo for browsers extensions docs
