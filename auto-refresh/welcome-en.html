@@ -1,2 +1,164 @@
-<!-- Instructions for unified extension installation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Auto Refresh</title>
+<style>
+:root{--bg:#18181b;--card:#1e1e22;--border:#2e2e34;--accent:#ea580c;--green:#22c55e;--text:#fff;--muted:#a1a1aa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;padding:40px 20px;display:flex;flex-direction:column;align-items:center}
+.container{width:100%;max-width:780px;display:flex;flex-direction:column;gap:28px}
+.header{display:flex;flex-direction:column;align-items:center;gap:14px}
+.logo-wrap{position:relative;width:68px;height:68px;background:var(--accent);border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(234,88,12,.35)}
+.check-badge{position:absolute;bottom:-5px;right:-5px;width:24px;height:24px;background:var(--green);border:3px solid var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#052e16;font-weight:900;font-size:13px}
+h1{font-size:28px;font-weight:800;letter-spacing:-.5px}
+.step-section{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:18px}
+.step-head{display:flex;align-items:center;gap:12px}
+.head-pill{height:36px;min-width:36px;padding:0 10px;border-radius:10px;background:#27272a;border:1px solid #3f3f46;color:#e4e4e7;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+.head-pill.brand{background:var(--accent);border-color:var(--accent);padding:0;width:36px}
+.head-arrow{color:var(--accent);font-weight:900;font-size:18px}
+.svg-frame{width:100%;border-radius:14px;overflow:hidden;border:1px solid #323238;background:#121215}
+.svg-frame svg{width:100%;height:auto;display:block}
+.footer{text-align:center;padding-top:4px}
+.footer a{color:var(--muted);text-decoration:none;font-size:13px;border-bottom:1px solid #3f3f46;padding-bottom:2px}
+.footer a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<path id="puz" d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/>
+<path id="puz-ff" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 6V4.5a2.5 2.5 0 0 1 5 0V6h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3.5h1.5a2.5 2.5 0 0 0 0-5H5V8a2 2 0 0 1 2-2h3z"/>
+<path id="pin" d="M16 9V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z"/>
+<path id="clk" d="M136,80v43.47l36.12,21.67a8,8,0,0,1-8.24,13.72l-40-24A8,8,0,0,1,120,128V80a8,8,0,0,1,16,0Zm88-24a8,8,0,0,0-8,8V82c-6.35-7.38-13.23-14.3-20.34-20.6A96,96,0,1,0,128,224a94.65,94.65,0,0,0,65.3-26.07,8,8,0,0,0-11.08-11.54A80,80,0,1,1,185,73.17c7.48,6.62,14.62,14,21.11,21.83H184a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V64A8,8,0,0,0,224,56Z"/>
+<g id="bar-top">
+<rect width="720" height="38" fill="#1C1C20"/>
+<path d="M20 38L28 10c2-4 5-5 10-5h152c5 0 8 1 10 5l8 28z" fill="#27272A"/>
+<rect x="44" y="18" width="110" height="8" rx="4" fill="#52525B"/>
+<path d="M214 38l8-28c2-4 5-5 10-5h138c5 0 8 1 10 5l8 28z" fill="#202024"/>
+<rect x="238" y="18" width="95" height="8" rx="4" fill="#3F3F46"/>
+<rect y="38" width="720" height="46" fill="#27272A"/>
+<path d="M26 61H14m5-6-6 6 6 6M44 61h12m-5-6 6 6-6 6" stroke="#71717A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M84 56a6 6 0 1 0 2 7" stroke="#71717A" stroke-width="2.2" stroke-linecap="round"/>
+<circle cx="668" cy="61" r="11" fill="#3F3F46"/>
+<circle cx="696" cy="55" r="2" fill="#A1A1AA"/><circle cx="696" cy="61" r="2" fill="#A1A1AA"/><circle cx="696" cy="67" r="2" fill="#A1A1AA"/>
+</g>
+</defs></svg>
 
+<div class="container">
+<header class="header">
+<div class="logo-wrap"><svg width="38" height="38" viewBox="0 0 256 256" fill="#FFF"><use href="#clk"/></svg><div class="check-badge">✓</div></div>
+<h1>Auto Refresh</h1>
+</header>
+
+<section class="step-section">
+<div class="step-head">
+<div class="head-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#puz"/></svg></div>
+<span class="head-arrow ff" style="display:none">→</span>
+<div class="head-pill ff" style="display:none">•••</div>
+<span class="head-arrow">→</span>
+<div class="head-pill"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><use href="#pin"/></svg></div>
+</div>
+
+<div class="svg-frame" id="d-cr">
+<svg viewBox="0 0 720 310" fill="none">
+<rect width="720" height="310" fill="#141417"/><use href="#bar-top"/>
+<rect x="108" y="46" width="490" height="30" rx="15" fill="#18181B" stroke="#3F3F46"/>
+<rect x="128" y="58" width="180" height="7" rx="3.5" fill="#3F3F46"/>
+<rect x="614" y="45" width="32" height="32" rx="8" fill="#EA580C" fill-opacity=".22" stroke="#EA580C" stroke-width="2.5"/>
+<svg x="621" y="52" width="18" height="18" viewBox="0 0 24 24" fill="#FFF"><use href="#puz"/></svg>
+
+<rect x="370" y="96" width="290" height="190" rx="14" fill="#232329" stroke="#3F3F46" stroke-width="1.5"/>
+<rect x="390" y="114" width="95" height="9" rx="4.5" fill="#71717A"/>
+<line x1="370" y1="136" x2="660" y2="136" stroke="#323238"/>
+
+<rect x="380" y="146" width="270" height="46" rx="10" fill="#2D2D35"/>
+<rect x="392" y="155" width="28" height="28" rx="7" fill="#EA580C"/>
+<svg x="397" y="160" width="18" height="18" viewBox="0 0 256 256" fill="#FFF"><use href="#clk"/></svg>
+<text x="430" y="174" fill="#FFF" font-family="sans-serif" font-size="14" font-weight="700">Auto Refresh</text>
+<rect x="606" y="153" width="32" height="32" rx="8" fill="#EA580C" fill-opacity=".22" stroke="#EA580C" stroke-width="2.5"/>
+<svg x="614" y="161" width="16" height="16" viewBox="0 0 24 24" fill="#FFF"><use href="#pin"/></svg>
+
+<rect x="392" y="206" width="28" height="28" rx="7" fill="#3F3F46"/><rect x="430" y="216" width="115" height="8" rx="4" fill="#52525B"/>
+<svg x="614" y="212" width="16" height="16" viewBox="0 0 24 24" fill="#52525B"><use href="#pin"/></svg>
+<rect x="392" y="246" width="28" height="28" rx="7" fill="#323238"/><rect x="430" y="256" width="85" height="8" rx="4" fill="#3F3F46"/>
+<svg x="614" y="252" width="16" height="16" viewBox="0 0 24 24" fill="#3F3F46"><use href="#pin"/></svg>
+
+<circle cx="315" cy="115" r="16" fill="#EA580C"/><text x="315" y="121" text-anchor="middle" fill="#FFF" font-family="sans-serif" font-size="16" font-weight="800">1</text>
+<path d="M334 113Q510 105 608 74M597 71l13 2-7 11" stroke="#EA580C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="315" cy="215" r="16" fill="#EA580C"/><text x="315" y="221" text-anchor="middle" fill="#FFF" font-family="sans-serif" font-size="16" font-weight="800">2</text>
+<path d="M334 215Q495 215 600 176M589 173l13 2-7 11" stroke="#EA580C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+
+<div class="svg-frame" id="d-ff" style="display:none">
+<svg viewBox="0 0 720 330" fill="none">
+<rect width="720" height="330" fill="#141417"/><use href="#bar-top"/>
+<rect x="108" y="46" width="490" height="30" rx="15" fill="#18181B" stroke="#3F3F46"/>
+<rect x="128" y="58" width="180" height="7" rx="3.5" fill="#3F3F46"/>
+<rect x="614" y="45" width="32" height="32" rx="8" fill="#EA580C" fill-opacity=".22" stroke="#EA580C" stroke-width="2.5"/>
+<svg x="621" y="52" width="18" height="18" viewBox="0 0 24 24" fill="#FFF"><use href="#puz"/></svg>
+
+<rect x="360" y="96" width="300" height="180" rx="14" fill="#232329" stroke="#3F3F46" stroke-width="1.5"/>
+<rect x="462" y="112" width="96" height="9" rx="4.5" fill="#71717A"/>
+<line x1="360" y1="132" x2="660" y2="132" stroke="#323238"/>
+<rect x="370" y="142" width="280" height="48" rx="10" fill="#2D2D35"/>
+<rect x="382" y="152" width="28" height="28" rx="7" fill="#EA580C"/>
+<svg x="387" y="157" width="18" height="18" viewBox="0 0 256 256" fill="#FFF"><use href="#clk"/></svg>
+<text x="420" y="171" fill="#FFF" font-family="sans-serif" font-size="14" font-weight="700">Auto Refresh</text>
+<rect x="610" y="150" width="32" height="32" rx="8" fill="#EA580C" fill-opacity=".22" stroke="#EA580C" stroke-width="2.5"/>
+<circle cx="620" cy="166" r="2" fill="#FFF"/><circle cx="626" cy="166" r="2" fill="#FFF"/><circle cx="632" cy="166" r="2" fill="#FFF"/>
+<rect x="382" y="204" width="28" height="28" rx="7" fill="#3F3F46"/><rect x="420" y="214" width="110" height="8" rx="4" fill="#52525B"/>
+
+<rect x="435" y="196" width="215" height="92" rx="12" fill="#1B1B20" stroke="#52525B" stroke-width="1.5"/>
+<rect x="450" y="210" width="120" height="7" rx="3.5" fill="#52525B"/>
+<line x1="435" y1="228" x2="650" y2="228" stroke="#2E2E34"/>
+<rect x="443" y="236" width="199" height="42" rx="8" fill="#EA580C" fill-opacity=".22" stroke="#EA580C" stroke-width="2"/>
+<svg x="454" y="249" width="16" height="16" viewBox="0 0 24 24" fill="#FFF"><use href="#pin"/></svg>
+<rect x="480" y="253" width="144" height="8" rx="4" fill="#FFF"/>
+
+<circle cx="305" cy="115" r="16" fill="#EA580C"/><text x="305" y="121" text-anchor="middle" fill="#FFF" font-family="sans-serif" font-size="16" font-weight="800">1</text>
+<path d="M324 113Q505 105 608 74M597 71l13 2-7 11" stroke="#EA580C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="305" cy="180" r="16" fill="#EA580C"/><text x="305" y="186" text-anchor="middle" fill="#FFF" font-family="sans-serif" font-size="16" font-weight="800">2</text>
+<path d="M324 180Q480 185 604 168M594 163l12 5-10 8" stroke="#EA580C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="305" cy="257" r="16" fill="#EA580C"/><text x="305" y="263" text-anchor="middle" fill="#FFF" font-family="sans-serif" font-size="16" font-weight="800">3</text>
+<path d="M324 257h112m-9-7 11 7-11 7" stroke="#EA580C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+</section>
+
+<section class="step-section">
+    <div class="step-head">
+    <div class="head-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a2 2 0 0 1 4 0v4m0-2a2 2 0 0 1 4 0v2m0-1a2 2 0 0 1 4 0v7a6 6 0 0 1-6 6h-2c-2.2 0-4.5-.86-6-2.4l-2.6-2.6a1.41 1.41 0 0 1 2-2L9 16.5V11"/></svg></div>
+    <span class="head-arrow">→</span>
+    <div class="head-pill brand"><svg width="20" height="20" viewBox="0 0 256 256" fill="#FFF"><use href="#clk"/></svg></div>
+    </div>
+    <div class="svg-frame">
+    <svg viewBox="0 0 720 190" fill="none">
+    <rect width="720" height="190" fill="#141417"/><use href="#bar-top"/>
+    <rect x="108" y="46" width="446" height="30" rx="15" fill="#18181B" stroke="#3F3F46"/>
+    <rect x="128" y="58" width="180" height="7" rx="3.5" fill="#3F3F46"/>
+    <rect x="566" y="41" width="40" height="40" rx="11" fill="#EA580C" fill-opacity=".22" stroke="#EA580C" stroke-width="2"/>
+    <rect x="570" y="45" width="32" height="32" rx="8" fill="#EA580C"/>
+    <svg x="576" y="51" width="20" height="20" viewBox="0 0 256 256" fill="#FFF"><use href="#clk"/></svg>
+    <rect x="614" y="45" width="32" height="32" rx="8" fill="#323238"/>
+    <svg x="621" y="52" width="18" height="18" viewBox="0 0 24 24" fill="#A1A1AA"><use href="#puz"/></svg>
+    <circle cx="485" cy="145" r="16" fill="#EA580C"/><text id="n-end" x="485" y="151" text-anchor="middle" fill="#FFF" font-family="sans-serif" font-size="16" font-weight="800">3</text>
+    <path d="M504 142Q548 134 576 92M565 95l12-5 2 13" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    </div>
+    </section>
+    
+    </div>
+    <script>
+    const p=new URLSearchParams(location.search),b=p.get('b');
+    if(b==='firefox'||(!b&&navigator.userAgent.toLowerCase().includes('firefox'))){
+    document.getElementById('d-cr').style.display='none';
+    document.getElementById('d-ff').style.display='block';
+    document.querySelectorAll('.ff').forEach(e=>e.style.display='flex');
+    document.getElementById('n-end').textContent='4';
+    document.querySelectorAll('use[href="#puz"]').forEach(u=>u.setAttribute('href','#puz-ff'));
+    }
+    </script>
+    </body>
+    </html>
